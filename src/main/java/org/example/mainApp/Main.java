@@ -15,50 +15,73 @@ public class Main {
         CustomerService customerService= new CustomerService();
         //add customer
         List<Customer> lsCustomer= new ArrayList<>();
-        lsCustomer.add(new Customer("Ali","Bilir",7,"DOC"));
+        lsCustomer.add(new Customer("Can","Bilir",7,"DOC"));
         lsCustomer.add(new Customer("Ayşe","Bilmez",10,"LAWYER"));
-        lsCustomer.add(new Customer("Mehmet","Bilirler",3,"NURSE"));
+        lsCustomer.add(new Customer("Mehmet","Bilirler",6,"NURSE"));
         lsCustomer.add(new Customer("Fatma","Bilcezler",11,"TEACHER"));
-        lsCustomer.add(new Customer("Hasancan","Bilmezler",7,"POET"));
+        lsCustomer.add(new Customer("Hasancan","Bilmezler",6,"POET"));
 
         //add invoice
         lsCustomer.get(0).addInvoice(new Invoice(2000.,8));
-        lsCustomer.get(0).addInvoice(new Invoice(2500.,8));
+        lsCustomer.get(0).addInvoice(new Invoice(200.,8));
         lsCustomer.get(1).addInvoice(new Invoice(1500.,11));
         lsCustomer.get(1).addInvoice(new Invoice(1650.,11));
         lsCustomer.get(2).addInvoice(new Invoice(350.,4));
-        lsCustomer.get(2).addInvoice(new Invoice(550.,4));
-        lsCustomer.get(3).addInvoice(new Invoice(800.,12));
+        lsCustomer.get(2).addInvoice(new Invoice(450.,4));
+        lsCustomer.get(3).addInvoice(new Invoice(500.,6));
         lsCustomer.get(3).addInvoice(new Invoice(750.,12));
         lsCustomer.get(4).addInvoice(new Invoice(1200.,8));
-        lsCustomer.get(4).addInvoice(new Invoice(900.,8));
+        lsCustomer.get(4).addInvoice(new Invoice(200.,6));
 
 
-        //All customers
+        System.out.println("/***********************************************/");
+        //Tüm müşterileri listeleyin
         customerService.ListOfAllCustomer(lsCustomer);
-        //Add new customer
-        Scanner scanner= new Scanner(System.in);
-        System.out.println("please press 1 If you want add new customer ");
-        int number=scanner.nextInt();
-        if (number==1){
-            System.out.println("Please enter Name?");
-            String name= scanner.nextLine();
-            System.out.println("Surname");
-            String surname= scanner.nextLine();
-            System.out.println("sector");
-            String sector= scanner.nextLine();
-            System.out.println("amount Of invoice");
-            Double amount= scanner.nextDouble();
-            System.out.println("registerDate(Just Mounth)");
-            int registerDate= scanner.nextInt();
-            System.out.println("invoiceDate(Just Mounth)");
-            int invoiceDate= scanner.nextInt();
-            customerService.AddNewCustomer(lsCustomer,name,surname,registerDate,sector,amount,invoiceDate);
-        }
 
+        System.out.println("/***********************************************/");
 
+        //Yeni Müşteri oluştur
+        System.out.println("Do you want add new customer? press 1 for yes ");
+        Scanner sc = new Scanner(System.in);
+        int i=sc.nextInt();
+        if (i==1){
+            customerService.newCustomer(lsCustomer);}
 
-        //list of inculude c in name
+        System.out.println("/***********************************************/");
+
+        //İçerisinde ‘C’ harfi olan müşterileri listeleyin
+        System.out.println("list of inculude c in name");
         customerService.CustomerWithLetterC(lsCustomer);
+
+        System.out.println("/***********************************************/");
+
+        //Haziran ayında kayıt olan müşterilerin faturalarınının toplam tutarını listeleyin
+        customerService.registerDateJuneTotalAmount(lsCustomer);
+
+        System.out.println("/***********************************************/");
+
+        //Sistemdeki tüm faturaları listeleyin
+        customerService.listOfAllInvoices(lsCustomer);
+
+        System.out.println("/***********************************************/");
+
+        //Sistemdeki 1500TL üstündeki faturaları listeleyin
+        customerService.invoicesOver1500TL(lsCustomer);
+
+        System.out.println("/***********************************************/");
+
+        //Sistemdeki 1500TL üstündeki faturaları ortalamasını hesaplayın
+        customerService.avarageOfInvoicesOver1500TL(lsCustomer);
+
+        System.out.println("/***********************************************/");
+
+        //Sistemdeki 500TL altındaki faturalara sahip müşterilerin isimleri listeleyin
+        customerService.listOfCustomerNamesOfInvoicesUnder500TL(lsCustomer);
+
+        System.out.println("/***********************************************/");
+
+        //Haziran ayını faturalarını ortalaması 750 altı olan firmalarının hangi sektörde olduğunu listeleyen kodu yazın.
+        customerService.listOfSector(lsCustomer);
     }
+
 }

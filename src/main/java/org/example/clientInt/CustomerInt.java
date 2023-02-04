@@ -6,7 +6,13 @@ import java.util.List;
 
 public interface CustomerInt {
     public void ListOfAllCustomer(List<Customer> ls);
-    public void AddNewCustomer(List<Customer> ls,String name, String surName,int registerDate,String sector,Double amount,int invoiceDate );
+    public void newCustomer(List<Customer> ls);
     public void CustomerWithLetterC(List<Customer> ls);
+    public void registerDateJuneTotalAmount(List<Customer> ls);
+    public void listOfAllInvoices(List<Customer> ls);
+    public void invoicesOver1500TL(List<Customer> ls);
+    public void avarageOfInvoicesOver1500TL(List<Customer> ls);
+    public void listOfCustomerNamesOfInvoicesUnder500TL(List<Customer> ls);
+    public void listOfSector(List<Customer> ls);
 }
 
